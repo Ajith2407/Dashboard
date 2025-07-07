@@ -1,0 +1,52 @@
+/* Make the wrapper take full screen and center content */
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;           /* Full viewport height */
+  background-color: #f0f2f5;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  
+  background-image: url('/assets/gradient.svg'); /* path relative to index.html */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; 
+}
+
+/* Form box styling */
+.auth-container {
+  width: 400px;
+  padding: 30px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+a {
+  color: #007bff;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+
+}

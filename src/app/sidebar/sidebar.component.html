@@ -1,0 +1,65 @@
+<div class="sidebar bg-dark text-white d-flex flex-column vh-100 sticky-top"
+     [class.collapsed]="isCollapsed">
+
+  <!-- Top Bar with Toggle -->
+  <div class="glass-container d-flex justify-content-between align-items-center px-3 py-2">
+    <span class="glass-text fw-bold" *ngIf="!isCollapsed">Admin</span>
+    <button class="btn btn-sm btn-outline-light" (click)="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+
+  <hr class="text-white mx-3" />
+
+  <!-- Navigation -->
+  <ul class="nav nav-pills flex-column mb-auto px-2">
+    <li class="nav-item">
+      <a class="nav-link text-white d-flex align-items-center"
+         routerLink="/layout/dashboard"
+         routerLinkActive="active bg-primary"
+         [attr.title]="isCollapsed ? 'Dashboard' : null">
+        <i class="bi bi-speedometer2 me-2 text-info"></i>
+        <span *ngIf="!isCollapsed">&nbsp;Dashboard</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link text-white d-flex align-items-center"
+         routerLink="/layout/data-report"
+         routerLinkActive="active bg-primary"
+         [attr.title]="isCollapsed ? 'Data Report' : null">
+        <i class="bi bi-database me-2 text-warning"></i>
+        <span *ngIf="!isCollapsed">&nbsp;Data Report</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link text-white d-flex align-items-center"
+         routerLink="/layout/enrollment"
+         routerLinkActive="active bg-primary"
+         [attr.title]="isCollapsed ? 'Enrollment' : null">
+        <i class="bi bi-person-plus me-2 text-success"></i>
+        <span *ngIf="!isCollapsed">&nbsp;Enrollment</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link text-white d-flex align-items-center"
+         routerLink="/layout/verification"
+         routerLinkActive="active bg-primary"
+         [attr.title]="isCollapsed ? 'Verification' : null">
+        <i class="bi bi-shield-check me-2 text-danger"></i>
+        <span *ngIf="!isCollapsed">&nbsp;Verification</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Footer User Info -->
+  <div class="mt-auto sidebar-footer px-3 py-2 d-flex align-items-center">
+    <img src="assets/administrator.png" class="avatar" />
+    <div class="ps-2" *ngIf="!isCollapsed">
+      <div class="fw-bold">&nbsp;&nbsp;&nbsp;Ajith</div>
+      <small class="text-muted">&nbsp;&nbsp;&nbsp;Admin</small>
+    </div>
+  </div>
+</div>

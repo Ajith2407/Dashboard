@@ -1,0 +1,16 @@
+/* Optional gradient brand text */
+
+
+.logout-gradient {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.logout-gradient:hover {
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+}
+

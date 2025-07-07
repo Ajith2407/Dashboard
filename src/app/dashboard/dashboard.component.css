@@ -1,0 +1,58 @@
+.main-layout {
+  display: flex;
+  min-height: 100vh; /* full screen height */
+}
+
+app-sidebar {
+  width: 250px; /* sidebar width */
+  background-color: #f0f0f0; /* optional background */
+  border-right: 1px solid #ccc;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.big-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.five-column-gap {
+  gap: 1rem;
+}
+
+.five-column-item {
+  flex: 0 0 20%; /* 100% / 5 = 20% per card */
+  max-width: 20%;
+}
+
+.five-column-item {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+@media (max-width: 992px) {
+  .five-column-item {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+@media (max-width: 768px) {
+  .five-column-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .five-column-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+

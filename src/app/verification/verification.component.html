@@ -1,0 +1,53 @@
+
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h4 class="mb-3">📋 Voice Verification Report</h4>
+
+  <!-- Date Filters -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <label>Start Date</label>
+      <input type="date" class="form-control" [(ngModel)]="startDate">
+    </div>
+    <div class="col-md-3">
+      <label>End Date</label>
+      <input type="date" class="form-control" [(ngModel)]="endDate">
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button class="btn btn-primary w-100" (click)="filterByDate()">Submit</button>
+    </div>
+    <div class="col-md-3 d-flex align-items-end gap-2">
+      <button class="btn btn-success w-100" (click)="exportToExcel()">Export to Excel</button>
+      <button class="btn btn-outline-primary w-100" (click)="exportToCSV()">Export to CSV</button>
+    </div>
+  </div>
+
+  <!-- Data Table -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th>Date with Time</th>
+        <th>Customer ID</th>
+        <th>Unique ID</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of filteredData; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.date | date: 'dd-MM-yyyy hh:mm a' }}</td>
+        <td>{{ item.customerId }}</td>
+        <td>{{ item.uniqueId }}</td>
+        <td>
+          <span [ngClass]="{
+            'badge bg-success': item.status === 'Success',
+            'badge bg-danger': item.status === 'Not Sufficient Voice Data'
+          }">
+            {{ item.status }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

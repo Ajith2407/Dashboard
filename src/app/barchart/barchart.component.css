@@ -1,0 +1,19 @@
+.box {
+    position: relative;
+    border-radius: 3px;
+    width: 100%;
+    padding-right: 20px;
+}
+
+
+
+.box-header { 
+    display: block;
+    padding-bottom: 20px;;
+    position: relative;
+}
+
+.box-title{
+    color :white;
+    font-size: medium;
+}

@@ -1,0 +1,95 @@
+
+<app-navbar></app-navbar>
+  <div class="container mt-4">
+     <h4 class="mb-3">📋 Voice Enrollment Report</h4>
+  <div class="row mb-2">
+    <div class="col-md-3">
+      <label>Start Date</label>
+      <input type="date" class="form-control" [(ngModel)]="startDate" />
+    </div>
+    <div class="col-md-3">
+      <label>End Date</label>
+      <input type="date" class="form-control" [(ngModel)]="endDate" />
+    </div>
+    <div class="col-md-2">
+      <label>Min Verification1</label>
+      <input type="number" class="form-control" [(ngModel)]="minVerification1" />
+    </div>
+    <div class="col-md-2">
+      <label>Max Verification1</label>
+      <input type="number" class="form-control" [(ngModel)]="maxVerification1" />
+    </div>
+    <div class="col-md-2 align-self-end">
+      <button class="btn btn-primary w-100" (click)="applyFilters()">Submit Filter</button>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <label>Search by Customer ID</label>
+      <input type="text" class="form-control" [(ngModel)]="customerIdSearch" (input)="applyFilters()" />
+    </div>
+    <div class="col-md-3">
+      <label>Filter Digit</label>
+      <select class="form-control" [(ngModel)]="digitFilter" (change)="applyFilters()">
+        <option value="">-- All --</option>
+        <option>Match</option>
+        <option>Not Match</option>
+      </select>
+    </div>
+    <div class="col-md-3 align-self-end">
+      <button class="btn btn-secondary" (click)="clearFilters()">Clear Filters</button>
+    </div>
+    <div class="col-md-3 align-self-end">
+      <button class="btn btn-success float-end" (click)="exportToCSV()">Export to CSV</button>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped ">
+    <thead class="table-dark">
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Unique ID</th>
+        <th>Customer ID</th>
+        <th>Verification1</th>
+        <th>Captcha Return</th>
+        <th>Digit</th>
+        <th>Verification2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pagedData">
+        <td>{{ item.date }}</td>
+        <td>{{ item.time }}</td>
+        <td>{{ item.uniqueId || '-' }}</td>
+        <td>{{ item.customerId || '-' }}</td>
+        <td>{{ item.verification1 ?? '-' }}</td>
+        <td>{{ item.captchaReturn || '-' }}</td>
+        <td>{{ item.digit || '-' }}</td>
+        <td>{{ item.verification2 || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav *ngIf="filteredData.length > pageSize" aria-label="Page navigation" class="mt-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+      </li>
+
+      <li class="page-item"
+          *ngFor="let page of [].constructor(Math.ceil(filteredData.length / pageSize)); let i = index"
+          [class.active]="currentPage === i + 1">
+        <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage === Math.ceil(filteredData.length / pageSize)">
+        <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+ 
+
