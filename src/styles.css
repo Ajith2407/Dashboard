@@ -37,10 +37,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background-color: #f8f9fa;
 
-  background-image: url('/assets/gradient.svg'); /* path relative to index.html */
+  
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; 
+
+ background-image: linear-gradient(to right top, #2dcbe4, #3ec3fb, #7ab6ff, #b5a4fb, #e48fdd);
+
 }
 
 /* Ensure proper spacing when sidebar is fixed */
