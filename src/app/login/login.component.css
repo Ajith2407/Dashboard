@@ -9,7 +9,7 @@
   padding: 0;
   overflow: hidden;
 
-  background-image: url('/assets/gradient.svg');
+  /* background-image: url('/assets/gradient.svg'); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -19,9 +19,9 @@
 .auth-container {
   width: 100%;
   max-width: 400px;
-  padding: 40px 30px;
+  padding: 20px 20px;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -35,7 +35,7 @@
 
 /* Title style */
 .auth-title {
-  margin-bottom: 25px;
+  /* margin-bottom: 25px; */
   color: #333;
   font-weight: 600;
   font-size: 24px;
