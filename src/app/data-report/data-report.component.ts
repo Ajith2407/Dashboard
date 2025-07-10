@@ -37,13 +37,13 @@ export class DataReportComponent implements OnInit {
     animationEnabled: true,
         datasets: [
           {
-            label: 'Dataset 1',
+            label: 'Previous Data ',
             backgroundColor: documentStyle.getPropertyValue('--p-cyan-500') || '#00bcd4',
             borderColor: documentStyle.getPropertyValue('--p-cyan-500') || '#00bcd4',
             data: [150, 59, 80, 81, 56, 55, 40, 20, 15, 5]
           },
           {
-            label: 'Dataset 2',
+            label: 'Today Data',
             backgroundColor: documentStyle.getPropertyValue('--p-gray-500') || '#9e9e9e',
             borderColor: documentStyle.getPropertyValue('--p-gray-500') || '#9e9e9e',
             data: [ 120, 28, 48, 40, 19, 86, 27, 90, 7, 6, 1]

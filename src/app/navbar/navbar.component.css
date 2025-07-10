@@ -14,3 +14,15 @@
   box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
 }
 
+.logout-gradient {
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  transition: 0.3s ease-in-out;
+}
+
+.logout-gradient:hover {
+  filter: brightness(1.1);
+}
+
