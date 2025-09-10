@@ -8,13 +8,13 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   stats = [
-    { label: 'Enrollment Success Total', value: 250, color: 'primary' },
-    { label: 'Enrollment Failure Total', value: 127, color: 'warning' },
+    { label: 'Enrollment Success Total', value: 250, color: 'success' },
+    { label: 'Enrollment Failure Total', value: 127, color: 'danger' },
     { label: 'Verification Success Total', value: 458, color: 'success' },
     { label: 'Verification Failure Total', value: 120, color: 'danger' },
 
-    { label: 'Enrollment Success Today', value: 40, color: 'primary' },
-    { label: 'Enrollment Failure Today', value: 10, color: 'warning' },
+    { label: 'Enrollment Success Today', value: 40, color: 'success' },
+    { label: 'Enrollment Failure Today', value: 10, color: 'danger' },
     { label: 'Verification Success Today', value: 35, color: 'success' },
     { label: 'Verification Failure Today', value: 5, color: 'danger' },
   ];

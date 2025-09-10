@@ -4,9 +4,11 @@
   background-color: #18283b;
   z-index: 1040;
 }
-
+.bg-darks{
+  background-color: black;
+}
 .sidebar.collapsed {
-  width: 70px !important;
+  width: 80px !important;
 }
 
 .sidebar-title {
@@ -50,6 +52,7 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  height: 56px;
   
 }
 
@@ -82,7 +85,7 @@
 
 /* Collapsed sidebar */
 .sidebar.collapsed {
-  width: 80px;
+  width: 70px;
 }
 
 /* Hide text and info when collapsed */
@@ -104,3 +107,5 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+

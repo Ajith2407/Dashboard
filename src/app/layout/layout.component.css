@@ -1,35 +1,39 @@
+/* Container */
 .layout-container {
   display: flex;
-  overflow: hidden;
+  height: 100vh;
+  overflow: hidden;         /* no x-scroll from container */
 }
 
-/* Sidebar fixed position */
+/* Sidebar fixed on left */
 app-sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 250px;             /* default width */
   height: 100vh;
   z-index: 1000;
   transition: width 0.3s ease;
 }
 
-/* Main content shifts to the right of sidebar */
+/* Main content beside sidebar */
 .main-content {
-  margin-left: 250px;
-  width: calc(100% - 250px);
-  transition: margin-left 0.3s ease, width 0.3s ease;
-  padding: 0rem;
-  overflow-y: auto;
+  margin-left: 250px;        /* match sidebar width */
+  transition: margin-left 0.3s ease;
+  padding: 0;
   height: 100vh;
+  overflow-y: auto;          /* scroll only vertically */
+  overflow-x: hidden;        /* 🚀 hide horizontal scroll */
+  width: calc(100% - 250px); /* prevent extra width */
+  box-sizing: border-box;
 }
 
-/* When collapsed */
+/* Collapsed sidebar */
 .layout-container.sidebar-collapsed app-sidebar {
-  width: 80px;
+  width: 70px;               /* collapsed width */
 }
 
 .layout-container.sidebar-collapsed .main-content {
-  margin-left: 70px;
-  width: calc(100% - 80px);
+  margin-left: 80px;         /* match collapsed width */
+  width: calc(100% - 80px);  /* keep inside viewport */
 }

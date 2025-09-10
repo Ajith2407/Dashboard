@@ -2,14 +2,14 @@
      [class.collapsed]="isCollapsed">
 
   <!-- Top Bar with Toggle -->
-  <div class="glass-container d-flex justify-content-between align-items-center px-3 py-2">
+  <div class="glass-container d-flex justify-content-between align-items-center px-3">
     <span class="glass-text fw-bold" *ngIf="!isCollapsed">Admin</span>
-    <button class="btn btn-sm btn-outline-light" (click)="toggleSidebar()">
+    <button class="btn btn-outline-light" (click)="toggleSidebar()">
       <i class="bi bi-list"></i>
     </button>
   </div>
 
-  <hr class="text-white mx-3" />
+  <!-- <hr class="text-white mx-3" /> -->
 
   <!-- Navigation -->
   <ul class="nav nav-pills flex-column mb-auto px-2">
