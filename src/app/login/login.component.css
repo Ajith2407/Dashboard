@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: #d1d4d8;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -89,3 +89,5 @@
 .register-link a:hover {
   text-decoration: underline;
 }
+
+

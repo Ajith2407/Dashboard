@@ -8,22 +8,22 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username = 'test';
-  password = 'test';
-  
+  username = '';
+  password = '';
 
   constructor(private router: Router) {}
 
-   ngOnInit(): void {
-   
-  }
-
+  ngOnInit(): void {}
 
   onLogin() {
-    if (this.username === 'test' && this.password === 'test') {
-      this.router.navigate(['/layout/dashboard']);
-    } else {
-      alert('Invalid credentials');
-    }
+  if (this.password === 'test') {
+    // save username in localStorage
+    localStorage.setItem('loggedInUser', this.username || 'Guest');
+
+    this.router.navigate(['/layout/dashboard']);
+  } else {
+    alert('Invalid credentials');
   }
+}
+
 }

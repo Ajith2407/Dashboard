@@ -1,23 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm w-100" >
-  
-    <div class="d-flex  flex-md-row justify-content-between align-items-center w-100">
-      
-      <!-- Brand Title -->
-      <a class="navbar-brand fw-bold fs-4 text-primary-emphasis text-center text-md-start mb-2 mb-md-0" href="#">
-        🔉 Voice Biometric Analyzer
-      </a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm w-100">
+  <div class="d-flex flex-md-row justify-content-between align-items-center w-100">
 
-      <!-- Log-Out Button -->
-      <a class="btn logout-gradient d-flex align-items-center justify-content-center gap-2 px-3 py-2 fw-bold"
-         routerLink="/login">
-         
-        <!-- Hidden on small screens -->
-        <span class="d-none d-md-inline">LogOut&nbsp; </span>
+    <!-- Brand Title -->
+    <a class="navbar-brand fw-bold fs-4 text-primary-emphasis text-center text-md-start mb-2 mb-md-0" href="#">
+      🔉 Voice Biometric Analyzer
+    </a>
 
-        <!-- Icon always visible -->
-        <i class="bi bi-box-arrow-right fs-5"></i>
-      </a>
+    <!-- Center Greeting -->
+    <span class="text-white fw-semibold fs-5 text-center mx-auto">
+      <ng-container *ngIf="showUser && loggedInUser; else greetingBlock">
+        👋 Hi {{ loggedInUser }}
+      </ng-container>
 
-    </div>
-  
+      <ng-template #greetingBlock>
+        {{ greeting }} |  Have a nice day!
+      </ng-template>
+    </span>
+
+    <!-- Log-Out Button -->
+    <a class="btn logout-gradient d-flex align-items-center justify-content-center gap-2 px-3 py-2 fw-bold"
+       routerLink="/login"
+       (click)="onLogout()">
+      <span class="d-none d-md-inline">LogOut&nbsp;</span>
+      <i class="bi bi-box-arrow-right fs-5"></i>
+    </a>
+  </div>
 </nav>
