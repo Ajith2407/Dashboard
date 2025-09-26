@@ -1,64 +1,99 @@
-/* Fullscreen centered background */
-.login-wrapper {
+/* Container split layout */
+.login-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #d1d4d8;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-
-  /* background-image: url('/assets/gradient.svg'); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  min-height: 100vh;
+  background: #fff;
+  
 }
 
-/* Card-style auth box */
-.auth-container {
-  width: 100%;
-  max-width: 400px;
-  padding: 20px 20px;
-  background: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
+/* Left Section */
+.left-section {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* Logo icon */
-.logo {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 20px;
-}
-
-/* Title style */
-.auth-title {
-  /* margin-bottom: 25px; */
-  color: #333;
+/* Tagline */
+.brand .tagline {
+  font-size: 0.9rem;
   font-weight: 600;
-  font-size: 24px;
+  letter-spacing: 1.5px;
+  color: #ff4081;
+  margin-bottom: 10px;
 }
 
-/* Input fields */
-.auth-container input {
+/* Title */
+.brand .title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.brand .highlight {
+  color: #4dd0e1;
+}
+
+.brand .subtitle {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #000;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+/* Login Box */
+.login-box {
+  max-width: 320px;
+}
+
+.login-box h3 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.login-box input {
   width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
+  padding: 12px;
+  margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 15px;
+  font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.3s;
 }
 
-.auth-container input:focus {
+.login-box input:focus {
   border-color: #007bff;
 }
 
-/* Submit button */
-.auth-container button {
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+/* Forgot Password */
+.forgot {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
   width: 100%;
   padding: 12px;
   background: #007bff;
@@ -66,28 +101,131 @@
   border: none;
   font-weight: bold;
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s;
 }
 
-.auth-container button:hover {
+.btn:hover {
   background: #0056b3;
 }
 
-/* Register text and link */
-.register-link {
-  margin-top: 15px;
-  font-size: 14px;
+/* Footer */
+footer {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 20px;
 }
 
-.register-link a {
+/* Right Section */
+.right-section {
+  flex: 1;
+  background: url("/assets/login-illustration.jpg") no-repeat center center/cover;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(200, 228, 228, 0.9);
+  padding: 20px 25px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.overlay p {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background: #f6f2f2;
+  border: 1px solid #007bff;
+  border-radius: 6px;
   color: #007bff;
   text-decoration: none;
 }
 
-.register-link a:hover {
-  text-decoration: underline;
+.btn-secondary:hover {
+  background: #007bff;
+  color: #fff;
 }
 
+/* -------------------------
+   ✅ Responsive Breakpoints
+-------------------------- */
+
+/* Tablet (max 1024px) */
+@media (max-width: 1024px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section {
+    padding: 40px 30px;
+    flex: none;
+  }
+
+  .right-section {
+    height: 300px;
+    flex: none;
+  }
+
+  .overlay {
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+  }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section {
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .brand .title {
+    font-size: 1.8rem;
+  }
+
+  .login-box {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .right-section {
+    display: none; /* hide illustration on small screens */
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+
+/* Shake Keyframes */
+/* Shake + Blink Red Keyframes */
+@keyframes shakeBlink {
+  0%   { transform: translateX(0); border-color: red; box-shadow: 0 0 5px red; }
+  20%  { transform: translateX(-8px); border-color: transparent; box-shadow: none; }
+  40%  { transform: translateX(8px); border-color: red; box-shadow: 0 0 5px red; }
+  60%  { transform: translateX(-6px); border-color: transparent; box-shadow: none; }
+  80%  { transform: translateX(6px); border-color: red; box-shadow: 0 0 5px red; }
+  100% { transform: translateX(0); border-color: transparent; box-shadow: none; }
+}
+
+/* Apply Shake + Blink */
+.shake {
+  animation: shakeBlink 4s ease;
+}
 

@@ -1,29 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent {
   username = '';
   password = '';
+  shake = false;  // flag for shake animation
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  onLogin(form: NgForm) {
+    if (form.invalid) return;
 
-  onLogin() {
-  if (this.password === 'test') {
-    // save username in localStorage
-    localStorage.setItem('loggedInUser', this.username || 'Guest');
+    if (this.password === 'test') {
+      localStorage.setItem('loggedInUser', this.username || 'Guest');
+      this.router.navigate(['/layout/dashboard']);
+    } else {
+      this.shake = true;
 
-    this.router.navigate(['/layout/dashboard']);
-  } else {
-    alert('Invalid credentials');
+      // remove shake class after animation ends
+      setTimeout(() => this.shake = false, 500);
+
+      console.log('Invalid credentials');
+    }
   }
-}
-
 }
