@@ -3,7 +3,6 @@
   display: flex;
   min-height: 100vh;
   background: #fff;
-  
 }
 
 /* Left Section */
@@ -120,7 +119,8 @@ footer {
 /* Right Section */
 .right-section {
   flex: 1;
-  background: url("/assets/login-illustration.jpg") no-repeat center center/cover;
+  background: url("/assets/login-illustration.jpg") no-repeat center
+    center/cover;
   position: relative;
 }
 
@@ -212,16 +212,39 @@ footer {
   }
 }
 
-
 /* Shake Keyframes */
 /* Shake + Blink Red Keyframes */
 @keyframes shakeBlink {
-  0%   { transform: translateX(0); border-color: red; box-shadow: 0 0 5px red; }
-  20%  { transform: translateX(-8px); border-color: transparent; box-shadow: none; }
-  40%  { transform: translateX(8px); border-color: red; box-shadow: 0 0 5px red; }
-  60%  { transform: translateX(-6px); border-color: transparent; box-shadow: none; }
-  80%  { transform: translateX(6px); border-color: red; box-shadow: 0 0 5px red; }
-  100% { transform: translateX(0); border-color: transparent; box-shadow: none; }
+  0% {
+    transform: translateX(0);
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+  20% {
+    transform: translateX(-8px);
+    border-color: transparent;
+    box-shadow: none;
+  }
+  40% {
+    transform: translateX(8px);
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+  60% {
+    transform: translateX(-6px);
+    border-color: transparent;
+    box-shadow: none;
+  }
+  80% {
+    transform: translateX(6px);
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+  100% {
+    transform: translateX(0);
+    border-color: transparent;
+    box-shadow: none;
+  }
 }
 
 /* Apply Shake + Blink */
@@ -229,3 +252,109 @@ footer {
   animation: shakeBlink 4s ease;
 }
 
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    padding: 0 20px;
+    background: #f7f9fa;
+  }
+
+  .left-section {
+    width: 100%;
+    padding: 30px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .brand .tagline {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .brand .title {
+    font-size: 1.9rem;
+    text-align: center;
+  }
+
+  .brand .subtitle {
+    font-size: 0.9rem;
+    margin-top: 6px;
+    text-align: center;
+    line-height: 1.4;
+    color: #555;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 1s ease both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .login-box h3 {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .forgot {
+    text-align: right;
+  }
+
+  .btn {
+    font-size: 1.05rem;
+    border-radius: 8px;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.75rem;
+  }
+
+  /* Right image section completely hidden */
+  .right-section {
+    display: none;
+  }
+}
+
+
+@keyframes shakeWarning {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shakeWarning 0.4 ease;
+  border: 2px solid #ff1744 !important;
+  box-shadow: 0 0 8px rgba(255, 23, 68, 0.8);
+}

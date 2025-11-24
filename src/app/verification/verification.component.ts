@@ -1,77 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import * as XLSX from 'xlsx';
-import * as FileSaver from 'file-saver';
+import { Component } from '@angular/core';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-verification',
   templateUrl: './verification.component.html',
   styleUrls: ['./verification.component.css']
 })
-export class VerificationComponent implements OnInit {
-
+export class VerificationComponent {
   startDate: string = '';
   endDate: string = '';
-  fullData: any[] = [];
-  filteredData: any[] = [];
-
-  // Status values
-  statuses = ['Success', 'Not Sufficient Voice Data'];
-
-  // Pagination + Rows per page
-  pageSizeOptions = [5, 10, 20, 50];  
-  pageSize = 5;  
-  currentPage = 1;  
+  currentPage = 1;
+  pageSize = 10;
+  pageSizeOptions = [5, 10, 20, 50];
   totalPages = 1;
 
-  ngOnInit(): void {
-    this.generateRandomData();
-    this.filteredData = [...this.fullData];
-  }
+  // ✅ Fake Data (will be shown in table + PDF)
+  filteredData = [
+    { date: new Date(), customerId: 'C001', uniqueId: 'U001', status: 'Success' },
+    { date: new Date(), customerId: 'C002', uniqueId: 'U002', status: 'Not Sufficient Voice Data' },
+    { date: new Date(), customerId: 'C003', uniqueId: 'U003', status: 'Success' },
+    { date: new Date(), customerId: 'C004', uniqueId: 'U004', status: 'Not Sufficient Voice Data' },
+    { date: new Date(), customerId: 'C005', uniqueId: 'U005', status: 'Success' },
+    { date: new Date(), customerId: 'C006', uniqueId: 'U006', status: 'Success' },
+    { date: new Date(), customerId: 'C007', uniqueId: 'U007', status: 'Not Sufficient Voice Data' },
+    { date: new Date(), customerId: 'C008', uniqueId: 'U008', status: 'Success' },
+    { date: new Date(), customerId: 'C009', uniqueId: 'U009', status: 'Not Sufficient Voice Data' },
+    { date: new Date(), customerId: 'C010', uniqueId: 'U010', status: 'Success' },
+  ];
 
-  // Generate dummy data
-  generateRandomData(): void {
-    for (let i = 0; i < 50; i++) {
-      const date = new Date(
-        2024,
-        5 + Math.floor(Math.random() * 2),
-        10 + i % 10,
-        10,
-        30 + i * 2
-      );
-      this.fullData.push({
-        id: i + 1,
-        date: date,
-        customerId: this.generateRandomNumber(6),
-        uniqueId: this.generateRandomNumber(15),
-        status: this.statuses[Math.floor(Math.random() * this.statuses.length)]
-      });
-    }
-  }
-
-  generateRandomNumber(length: number): string {
-    return Array.from({ length }, () => Math.floor(Math.random() * 10)).join('');
-  }
-
-  // Date filter
-  filterByDate(): void {
-    const start = this.startDate ? new Date(this.startDate) : null;
-    const end = this.endDate ? new Date(this.endDate) : null;
-
-    this.filteredData = this.fullData.filter(item => {
-      const itemDate = new Date(item.date);
-      if (start && itemDate < start) return false;
-      if (end && itemDate > end) return false;
-      return true;
-    });
-
-    this.onPageChange(1); // reset to first page after filtering
-  }
-
-  // Pagination logic
+  // Pagination Logic
   paginatedData() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.filteredData.slice(start, start + this.pageSize);
+  }
+
+  totalPagesArray() {
     this.totalPages = Math.ceil(this.filteredData.length / this.pageSize);
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    return this.filteredData.slice(startIndex, startIndex + this.pageSize);
+    return Array(this.totalPages)
+      .fill(0)
+      .map((_, i) => i + 1);
   }
 
   onPageChange(page: number) {
@@ -80,43 +48,72 @@ export class VerificationComponent implements OnInit {
     }
   }
 
-  totalPagesArray() {
-    return Array(this.totalPages).fill(0).map((_, i) => i + 1);
+  // Existing Functions
+  filterByDate() {
+    console.log('Filter data from', this.startDate, 'to', this.endDate);
   }
 
-  // Export to Excel
-  exportToExcel(): void {
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(
-      this.filteredData.map((item, index) => ({
-        "S.No": index + 1,
-        "Date with Time": new Date(item.date).toLocaleString(),
-        "Customer ID": item.customerId,
-        "Unique ID": item.uniqueId,
-        "Status": item.status
-      }))
-    );
-
-    const workbook: XLSX.WorkBook = {
-      Sheets: { 'FilteredData': worksheet },
-      SheetNames: ['FilteredData']
-    };
-
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-
-    FileSaver.saveAs(data, 'VoiceVerification_Report.xlsx');
+  exportToExcel() {
+    console.log('Excel export triggered');
   }
 
-  // Export to CSV
-  exportToCSV(): void {
-    const header = 'S.No,Date with Time,Customer ID,Unique ID,Status';
-    const rows = this.filteredData.map((item, index) =>
-      `${index + 1},${new Date(item.date).toLocaleString()},${item.customerId},${item.uniqueId},${item.status}`
-    );
-
-    const csvContent = header + '\n' + rows.join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-
-    FileSaver.saveAs(blob, 'VoiceVerification_Report.csv');
+  exportToCSV() {
+    console.log('CSV export triggered');
   }
+
+  // ✅ New Function: Export to PDF
+  // ✅ Updated Function — Adds logo and heading
+exportToPDF() {
+  const doc = new jsPDF();
+
+  // Add image logo (adjust the path as needed)
+  const img = new Image();
+  img.src = 'assets/login-illustration.jpg'; // ✅ make sure kvb.jpg is in your Angular assets folder
+
+  img.onload = () => {
+    // Add logo on top-left corner
+    doc.addImage(img, 'JPEG', 14, 10, 25, 25);
+
+    // Add heading next to logo or centered
+    doc.setFontSize(18);
+    doc.setTextColor(40);
+    doc.text('KVB Voice Enrollment Report', 70, 25, { align: 'center' });
+
+    // Small line separator
+    doc.setDrawColor(100);
+    doc.line(14, 35, 195, 35);
+
+    // Table Headers
+    const head = [['S.No', 'Date with Time', 'Customer ID', 'Unique ID', 'Status']];
+
+    // Table Data (fake data)
+    const data = this.filteredData.map((item, index) => [
+      index + 1,
+      new Date(item.date).toLocaleString(),
+      item.customerId,
+      item.uniqueId,
+      item.status
+    ]);
+
+    // AutoTable
+    autoTable(doc, {
+      startY: 40,
+      head: head,
+      body: data,
+      styles: { fontSize: 10, cellPadding: 3 },
+      headStyles: { fillColor: [33, 37, 41] },
+      alternateRowStyles: { fillColor: [240, 240, 240] },
+    });
+
+    // Footer (timestamp)
+    const date = new Date().toLocaleString();
+    const pageHeight = doc.internal.pageSize.height;
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${date}`, 14, pageHeight - 10);
+
+    // Save file
+    doc.save('Voice_Enrollment_Report.pdf');
+  };
+}
+
 }

@@ -1,3 +1,4 @@
+
 <app-navbar></app-navbar>
 <div class="container mt-4">
   <h4 class="mb-3"> 📋 Voice Enrollment Report</h4>
@@ -16,8 +17,9 @@
       <button class="btn btn-primary w-100" (click)="filterByDate()">Submit</button>
     </div>
     <div class="col-md-3 d-flex align-items-end gap-2">
-      <button class="btn btn-success w-100" (click)="exportToExcel()">Export to Excel</button>
-      <button class="btn btn-outline-primary w-100" (click)="exportToCSV()">Export to CSV</button>
+      <button class="btn btn-success w-100" (click)="exportToExcel()"> Excel</button>
+      <!-- <button class="btn btn-outline-primary w-100" (click)="exportToCSV()"> CSV</button> -->
+      <button class="btn btn-danger" (click)="exportToPDF()">Export PDF</button>
     </div>
   </div>
 
